@@ -113,9 +113,7 @@ class Solutions {
     static long getLargestProductBySize(String sample, int size) {
         List<Long> integers = sample.chars().map(Character::getNumericValue).filter(i -> i >= 0).mapToLong(Long::valueOf).boxed().collect(Collectors.toList());
         List<List<Long>> valueGroup = new ArrayList();
-        for (int index = 0; index <= integers.size() - size; index++) {
-            valueGroup.add(integers.subList(index, index + size));
-        }
+        IntStream.range(0, integers.size() - size + 1).forEach(index -> valueGroup.add(integers.subList(index, index + size)));
         return valueGroup
                 .stream()
                 .map(value -> value.stream().reduce((pre, next) -> pre * next).orElse(0L))
@@ -123,5 +121,4 @@ class Solutions {
                 .max()
                 .orElse(0);
     }
-
 }
