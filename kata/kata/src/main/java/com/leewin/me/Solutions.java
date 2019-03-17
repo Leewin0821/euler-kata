@@ -121,4 +121,21 @@ class Solutions {
                 .max()
                 .orElse(0);
     }
+
+    static List<Integer> getPythagoreanTripletBySum(int sum) {
+        List<Integer> list = new ArrayList<>();
+        IntStream.range(1, Math.round(sum >> 1)).forEach(c -> fitPythagoreanFormula(c, sum, list));
+        return list;
+    }
+
+    private static void fitPythagoreanFormula(int c, int sum, List<Integer> list) {
+        IntStream.range(1, c).forEach(b -> {
+            int a = sum - b - c;
+            if (a < b && a * a + b * b == c * c) {
+                list.add(a);
+                list.add(b);
+                list.add(c);
+            }
+        });
+    }
 }

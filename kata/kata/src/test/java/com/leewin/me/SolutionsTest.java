@@ -97,4 +97,12 @@ public class SolutionsTest {
         assertEquals(5832L, result);
         assertEquals(23514624000L, result2);
     }
+
+    @Test
+    public void shouldGetPythagoreanTriplet() {
+        List<Integer> nums1 = Solutions.getPythagoreanTripletBySum(12);
+        List<Integer> nums2 = Solutions.getPythagoreanTripletBySum(1000);
+        assertEquals(60, nums1.stream().mapToInt(Integer::intValue).reduce((pre, next) -> pre * next).orElse(0));
+        assertEquals(31875000, nums2.stream().mapToInt(Integer::intValue).reduce((pre, next) -> pre * next).orElse(0));
+    }
 }
