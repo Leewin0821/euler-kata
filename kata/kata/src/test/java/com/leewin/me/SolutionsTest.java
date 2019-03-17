@@ -105,4 +105,12 @@ public class SolutionsTest {
         assertEquals(60, nums1.stream().mapToInt(Integer::intValue).reduce((pre, next) -> pre * next).orElse(0));
         assertEquals(31875000, nums2.stream().mapToInt(Integer::intValue).reduce((pre, next) -> pre * next).orElse(0));
     }
+
+    @Test
+    public void shouldGetSumOfPrimesBelowValue() {
+        long result1 = Solutions.getSumOfPrimesBelow(10);
+        long result2 = Solutions.getSumOfPrimesBelow(2000000);
+        assertEquals(17L, result1);
+        assertEquals(142913828922L, result2);
+    }
 }

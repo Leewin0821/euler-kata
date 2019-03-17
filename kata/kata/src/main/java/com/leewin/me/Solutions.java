@@ -138,4 +138,12 @@ class Solutions {
             }
         });
     }
+
+    static long getSumOfPrimesBelow(int upperLimit) {
+        return IntStream
+                .range(2, upperLimit)
+                .filter(Solutions::isPrime)
+                .mapToLong(Long::valueOf)
+                .sum();
+    }
 }
