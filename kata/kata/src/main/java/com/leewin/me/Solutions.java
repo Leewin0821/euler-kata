@@ -190,4 +190,21 @@ class Solutions {
                 .boxed()
                 .collect(Collectors.toList());
     }
+
+    static long getTriangleNumOverDivisor(int divisorNum) {
+        List<Long> divisors = new ArrayList<>();
+        AtomicLong counter = new AtomicLong(3L);
+        long angleNum = 3L;
+        while(divisors.size() < divisorNum) {
+            divisors.clear();
+            angleNum += counter.getAndIncrement();
+            for (long i = 1; i <= Math.round(Math.sqrt(angleNum)); i++) {
+                if (angleNum % i == 0) {
+                    divisors.add(i);
+                    divisors.add(angleNum % i);
+                }
+            }
+        }
+        return angleNum;
+    }
 }

@@ -141,4 +141,12 @@ public class SolutionsTest {
         int result = Solutions.getGreatestProductFrom(input, size, step);
         assertEquals(70600674, result);
     }
+
+    @Test
+    public void shouldGetTriangleNumOverDivisor() {
+        long result1 = Solutions.getTriangleNumOverDivisor(5);
+        long result2 = Solutions.getTriangleNumOverDivisor(500);
+        assertEquals(28L, result1);
+        assertEquals(76576500L, result2);
+    }
 }
