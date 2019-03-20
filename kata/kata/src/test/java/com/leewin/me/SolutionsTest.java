@@ -276,4 +276,14 @@ public class SolutionsTest {
         assertEquals(10, result);
         assertEquals(837799, map.get(maxLen).longValue());
     }
+
+    @Test
+    public void shouldGetPathSum() {
+        long result = 1L;
+        for (int i = 0; i < 20; i++) {
+            result *= (2 * 20) - i;
+            result /= i + 1;
+        }
+        assertEquals(137846528820L, result);
+    }
 }
