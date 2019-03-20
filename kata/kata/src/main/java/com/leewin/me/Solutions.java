@@ -146,4 +146,48 @@ class Solutions {
                 .mapToLong(Long::valueOf)
                 .sum();
     }
+
+    static int getGreatestProductFrom(String input, int size, int step) {
+        List<Integer> list = convertToList(input);
+        return IntStream
+                .range(0, list.size())
+                .map(i -> Stream
+                        .of(Direction.values())
+                        .map(direction -> direction.getVector().apply(step, size))
+                        .filter(v -> {
+                            List<Integer> coordinates = extractCoordinate(i, v)
+                                    .map(j -> j % step)
+                                    .boxed()
+                                    .collect(Collectors.toList());
+                            int max = coordinates.stream().mapToInt(Integer::intValue).max().orElse(0);
+                            int min = coordinates.stream().mapToInt(Integer::intValue).min().orElse(0);
+                            return Math.abs(max - min) <= 3;
+                        })
+                        .map(v -> extractCoordinate(i, v)
+                                .map(list::get)
+                                .reduce((pre, next) -> pre * next)
+                                .orElse(0)
+                        )
+                        .mapToInt(Integer::intValue)
+                        .max()
+                        .orElse(0)
+                )
+                .max()
+                .orElse(0);
+    }
+
+    private static IntStream extractCoordinate(Integer index, List<Integer> vector) {
+        return vector
+                .stream()
+                .mapToInt(j -> j + index)
+                .filter(j -> j >= 0 && j < 400);
+    }
+
+    private static List<Integer> convertToList(String input) {
+        return Stream
+                .of(input.split("\\s"))
+                .mapToInt(Integer::valueOf)
+                .boxed()
+                .collect(Collectors.toList());
+    }
 }
