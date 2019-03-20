@@ -207,4 +207,22 @@ class Solutions {
         }
         return angleNum;
     }
+
+    static long getChainFromStartNum(long start) {
+        AtomicLong counter = new AtomicLong(1L);
+        return getNumByRule(start, counter);
+    }
+
+    private static long getNumByRule(long input, AtomicLong counter) {
+        while (input != 1L) {
+            if (input % 2 == 0) {
+                counter.getAndIncrement();
+                return getNumByRule(input / 2, counter);
+            } else {
+                counter.getAndIncrement();
+                return getNumByRule(3 * input + 1, counter);
+            }
+        }
+        return counter.get();
+    }
 }

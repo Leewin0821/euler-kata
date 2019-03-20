@@ -259,4 +259,21 @@ public class SolutionsTest {
                 .orElse(new BigDecimal(0));
         assertEquals(new BigDecimal("5537376230390876637302048746832985971773659831892672"), result);
     }
+
+    @Test
+    public void shouldGetChainOfGivenNum() {
+        long result = Solutions.getChainFromStartNum(13);
+        Map<Long, Long> map = new HashMap<>();
+        long maxLen = LongStream
+                .range(1L, 1000000L)
+                .map(l -> {
+                    long length = Solutions.getChainFromStartNum(l);
+                    map.put(length, l);
+                    return length;
+                })
+                .max()
+                .orElse(0L);
+        assertEquals(10, result);
+        assertEquals(837799, map.get(maxLen).longValue());
+    }
 }
