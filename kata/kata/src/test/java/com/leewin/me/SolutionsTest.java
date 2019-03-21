@@ -286,4 +286,12 @@ public class SolutionsTest {
         }
         assertEquals(137846528820L, result);
     }
+
+    @Test
+    public void shouldGetSumOfDigitsOfBinary() {
+        long result1 = Solutions.getSumOfDigitsOfBinary(15);
+        long result2 = Solutions.getSumOfDigitsOfBinary(1000);
+        assertEquals(26, result1);
+        assertEquals(1366, result2);
+    }
 }

@@ -225,4 +225,14 @@ class Solutions {
         }
         return counter.get();
     }
+
+    static long getSumOfDigitsOfBinary(int power) {
+        BigDecimal result = BigDecimal.ZERO;
+        BigDecimal total = BigDecimal.valueOf(2L).pow(power);
+        while (total.compareTo(BigDecimal.ZERO) > 0) {
+            result = result.add(total.remainder(BigDecimal.TEN));
+            total = total.divide(BigDecimal.TEN, RoundingMode.FLOOR);
+        }
+        return result.longValue();
+    }
 }
