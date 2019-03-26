@@ -327,4 +327,12 @@ public class SolutionsTest {
         int result = Solutions.countSundayOnFirstOfMonth(1901, 2000);
         assertEquals(171, result);
     }
+
+    @Test
+    public void shouldGetSumOfFactorialDigit() {
+        int result1 = Solutions.getSumOfDigitsOfFactorial(10);
+        int result2 = Solutions.getSumOfDigitsOfFactorial(100);
+        assertEquals(27, result1);
+        assertEquals(648, result2);
+    }
 }

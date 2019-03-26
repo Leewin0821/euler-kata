@@ -61,15 +61,20 @@ class Solutions {
     }
 
     static boolean isPalindrome(int value) {
-        double power = 0.0;
-        List<Integer> origin = new LinkedList<>();
-        while (value > Math.pow(10, power)) {
-            origin.add(Double.valueOf(value / Math.pow(10, power)).intValue() % 10);
-            power++;
-        }
+        List<Integer> origin = extractDigitsFrom(value);
         List<Integer> destination = new ArrayList<>(origin);
         Collections.reverse(destination);
         return origin.equals(destination);
+    }
+
+    private static List<Integer> extractDigitsFrom(long value) {
+        List<Integer> digits = new LinkedList<>();
+        double power = 0.0;
+        while (value > Math.pow(10, power)) {
+            digits.add(Double.valueOf(value / Math.pow(10, power)).intValue() % 10);
+            power++;
+        }
+        return digits;
     }
 
     static int getSmallestLcm(int start, int end) {
@@ -270,5 +275,14 @@ class Solutions {
                             }
                         }));
         return counter.get();
+    }
+
+    static int getSumOfDigitsOfFactorial(int num) {
+        BigDecimal product = IntStream
+                .range(1, num + 1)
+                .mapToObj(BigDecimal::new)
+                .reduce(BigDecimal::multiply)
+                .orElse(BigDecimal.ZERO);
+        return product.toString().chars().map(c -> c - 48).sum();
     }
 }
