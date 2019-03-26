@@ -321,4 +321,10 @@ public class SolutionsTest {
         assertEquals(23L, result1);
         assertEquals(1074L, result2);
     }
+
+    @Test
+    public void shouldCountSundayOnFirstOfMonth() {
+        int result = Solutions.countSundayOnFirstOfMonth(1901, 2000);
+        assertEquals(171, result);
+    }
 }

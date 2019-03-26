@@ -257,4 +257,18 @@ class Solutions {
                 )
                 .toArray(int[][]::new);
     }
+
+    static int countSundayOnFirstOfMonth(int start, int end) {
+        AtomicInteger counter = new AtomicInteger(0);
+        IntStream
+                .range(start, end + 1)
+                .forEach(year -> IntStream
+                        .range(1, 13)
+                        .forEach(month -> {
+                            if (LocalDate.of(year, month, 1).getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+                                counter.getAndIncrement();
+                            }
+                        }));
+        return counter.get();
+    }
 }
