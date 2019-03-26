@@ -285,4 +285,11 @@ class Solutions {
                 .orElse(BigDecimal.ZERO);
         return product.toString().chars().map(c -> c - 48).sum();
     }
+
+    static long getSumOfFactorsFrom(long input) {
+        return LongStream
+                .range(1, input)
+                .filter(i -> input % i == 0)
+                .sum();
+    }
 }

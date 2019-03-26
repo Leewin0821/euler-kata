@@ -335,4 +335,22 @@ public class SolutionsTest {
         assertEquals(27, result1);
         assertEquals(648, result2);
     }
+
+    @Test
+    public void shouldGetSumOfFactors() {
+        long result1 = Solutions.getSumOfFactorsFrom(220L);
+        long result2 = Solutions.getSumOfFactorsFrom(284L);
+        long totalSum = LongStream
+                .range(1, 10000)
+                .filter(i -> {
+                    long sum = Solutions.getSumOfFactorsFrom(i);
+                    long amicable = Solutions.getSumOfFactorsFrom(sum);
+                    return sum != amicable && i == amicable;
+                })
+                .distinct()
+                .sum();
+        assertEquals(284L, result1);
+        assertEquals(220L, result2);
+        assertEquals(31626L, totalSum);
+    }
 }
