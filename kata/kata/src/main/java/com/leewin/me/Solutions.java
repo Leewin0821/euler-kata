@@ -292,4 +292,28 @@ class Solutions {
                 .filter(i -> input % i == 0)
                 .sum();
     }
+
+    static long calAllScoresOfNames() {
+        AtomicInteger counter = new AtomicInteger(1);
+        Map<String, Integer> nameMap;
+        try (Stream<String> stream = Files.lines(Paths.get("src/test/resources/names.txt"))) {
+            nameMap = stream
+                    .flatMap(s -> Stream.of(s.split(",")))
+                    .map(s -> s.replaceAll("\"", ""))
+                    .sorted(Comparator.comparing(String::toString))
+                    .collect(Collectors.toMap(Function.identity(), s -> counter.getAndIncrement()));
+        } catch (IOException ioe) {
+            return 0L;
+        }
+        return nameMap
+                .entrySet()
+                .stream()
+                .mapToLong(m -> m
+                        .getKey()
+                        .toLowerCase()
+                        .chars()
+                        .map(c -> c - 96)
+                        .sum() * m.getValue()
+                ).sum();
+    }
 }

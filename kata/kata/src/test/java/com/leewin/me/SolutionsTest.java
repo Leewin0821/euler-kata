@@ -353,4 +353,10 @@ public class SolutionsTest {
         assertEquals(220L, result2);
         assertEquals(31626L, totalSum);
     }
+
+    @Test
+    void shouldGetAllScoreOfName() {
+        long actual = Solutions.calAllScoresOfNames();
+        assertEquals(871198282L, actual);
+    }
 }
