@@ -359,4 +359,11 @@ public class SolutionsTest {
         long actual = Solutions.calAllScoresOfNames();
         assertEquals(871198282L, actual);
     }
+
+    @Test
+    void shouldGetSumOfNonAbundantNums() {
+        int upperLimit = 28123;
+        int actual = Solutions.getSumOfNonAbundantNums(upperLimit);
+        assertEquals(4179871, actual);
+    }
 }

@@ -316,4 +316,31 @@ class Solutions {
                         .sum() * m.getValue()
                 ).sum();
     }
+
+    static int getSumOfNonAbundantNums(int upperLimit) {
+        List<Integer> abundantNums = IntStream
+                .rangeClosed(2, upperLimit)
+                .filter(Solutions::isAbundantNum)
+                .boxed()
+                .collect(Collectors.toList());
+        return IntStream.range(1, upperLimit)
+                .filter(i -> {
+                    boolean result = true;
+                    for (Integer j : abundantNums) {
+                        if (i > j && abundantNums.contains(i - j)) {
+                            result = false;
+                            break;
+                        }
+                    }
+                    return result;
+                })
+                .sum();
+    }
+
+    private static boolean isAbundantNum(int num) {
+        return IntStream
+                .range(1, num)
+                .filter(i -> num % i == 0)
+                .sum() > num;
+    }
 }
